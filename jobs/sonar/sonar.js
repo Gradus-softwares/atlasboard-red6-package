@@ -15,7 +15,7 @@
  */
 
 module.exports = function (config, dependencies, job_callback) {
-  var metricsUrl = config.serverUrl + '/api/resources?metrics=ncloc,coverage,sqale_index,tests,blocker_violations&resource=' + config.resource;
+  var metricsUrl = config.serverUrl + '/api/resources?metrics=ncloc,overall_coverage,sqale_index,tests,blocker_violations&resource=' + config.resource;
   var credentials = config.credentials;
   var logger = dependencies.logger;
   var _ = dependencies.underscore;
@@ -39,7 +39,7 @@ module.exports = function (config, dependencies, job_callback) {
   };
 
   function getCoverage(metricsData) {
-    var metric = getMetric(metricsData, "coverage");
+    var metric = getMetric(metricsData, "overall_coverage");
     if (!metric) {
       return null;
     }
